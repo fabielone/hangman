@@ -71,5 +71,7 @@ int main(void)
     printf("\n ");
 
     scanf("%d", &num);
+    
+	//ola, te hice leer :)
     return 0;
 }
