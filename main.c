@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "Ventanas2.h"
+#include "Ventanas.h"
 
 
 int main(void)
