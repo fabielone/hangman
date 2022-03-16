@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "funciones.h"
 
 
 
@@ -29,51 +30,59 @@ void PonTextoCentradoRecuadro(short c1, short c2, short r, char* Texto)
 
 void ColorTexto(int Clr)
 {
-	//HANDLE Color = GetStdHandle(STD_OUTPUT_HANDLE);
-	//SetConsoleTextAttribute(Color, Clr);
+  printf("\e[%dm[",Clr);
+
 }
 
 void LineaHorizontal(short c1, short c2, short r, short tipo)
 {
 	short c;
-	gotoxy(c1, r); printf("%c", 204);
-    gotoxy(c2, r); printf("%c", 185);
+	gotoxy(c1, r); printf("\u2551");
+    gotoxy(c2, r); printf("\u2551");
     
     for (c=c1+1; c<c2; c++)
 	{
-	   	 gotoxy(c, r); printf("%c", 205);
+	   	 gotoxy(c, r); printf("\u2550\n");
+        delay(10);
 	}
 }
 
 void LineaVertical(short r1, short r2, short c, short tipo )
 {
 	short r;
-	gotoxy(c, r1); printf("%c", 203);
+	gotoxy(c, r1); printf("\u2550");
     gotoxy(c, r2); printf("%c", 202);
     
      for (r=r1+1; r<r2; r++)
-	    gotoxy(c, r); printf("%c", 205);
+	    gotoxy(c, r); printf("\u2550");
 }
 
 void Recuadro(short c1, short r1, short c2, short r2, short Tipo)
 {
     short c, r;
 
-    gotoxy(c1, r1); printf("%c", 201);
-    gotoxy(c2, r1); printf("%c", 187);
-    gotoxy(c1, r2); printf("%c", 200);
-    gotoxy(c2, r2); printf("%c", 188);
+    gotoxy(c1, r1); printf("\u2554");
+    
+    gotoxy(c2, r1); printf("\u2557");
+   
+    gotoxy(c1, r2); printf("\u255A");
+    
+    gotoxy(c2, r2); printf("\u255D");
      
     for (c=c1+1; c<c2; c++)
 	{
-	    gotoxy(c, r1); printf("%c", 205);
-	    gotoxy(c, r2); printf("%c", 205);
+	    gotoxy(c, r1); printf("\u2550\n");
+	    gotoxy(c2-c+1, r2); printf("\u2550\n");
+      delay(10);
+      
 	}
 	
     for (r=r1+1; r<r2; r++)
 	{
-	    gotoxy(c1, r); printf("%c", 186);
-	    gotoxy(c2, r); printf("%c", 186);
+	    gotoxy(c1, r); printf("\u2551\n");
+	    gotoxy(c2, r2-r+1); printf("\u2551\n");
+      delay(10);
+    
 	}
 
 }
@@ -103,7 +112,7 @@ short MenuMetodosNumericos(char *Menu[], short NumeroDeOpciones, char *Texto)
  
   do
   {  
-    gotoxy(64,8+x-1); scanf("%i",&Opcion);
+    gotoxy(64,8+x-1); scanf("%hi",&Opcion);
     
     if(Opcion<1 || Opcion>NumeroDeOpciones-1)
      PonTextoCentradoPantalla(22, "La opcion esta fuera de rango");
