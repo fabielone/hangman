@@ -1,13 +1,12 @@
-#include <conio.h>
 #include <stdio.h>
 #include <string.h>
-#include <windows.h>
+#include <stdlib.h>
 
-// Funcion para posicionar el cursor en la posicion  x, y de la pantalla
+
+
 void gotoxy(short x, short y)                                                          
 {
- COORD pos ={x,y};
- SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+ printf("%c[%d;%df", 0x1B, y, x);
 }
 
 // Imprime un texto en la columna c y el renglon r  de la pantalla
@@ -30,8 +29,8 @@ void PonTextoCentradoRecuadro(short c1, short c2, short r, char* Texto)
 
 void ColorTexto(int Clr)
 {
-	HANDLE Color = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(Color, Clr);
+	//HANDLE Color = GetStdHandle(STD_OUTPUT_HANDLE);
+	//SetConsoleTextAttribute(Color, Clr);
 }
 
 void LineaHorizontal(short c1, short c2, short r, short tipo)
@@ -112,4 +111,3 @@ short MenuMetodosNumericos(char *Menu[], short NumeroDeOpciones, char *Texto)
   while(Opcion<1 || Opcion>NumeroDeOpciones-1);
   return Opcion;
 }
-
