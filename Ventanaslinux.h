@@ -17,6 +17,49 @@ void PonTextoXY(short c, short r, char *Texto)
   printf("%s", Texto);
 }
 
+void PonTextoXYANIMADO(short c, short r, char *Texto)
+{
+  int l = strlen(Texto);
+  char *arra = Texto;
+  ;
+
+  for (int i = 0; i < l; i++)
+  {
+    gotoxy(c + i, r);
+    printf("%c\n", arra[i]);
+    delay(20);
+  }
+  gotoxy(c, r);
+  printf("%s", Texto);
+}
+
+void errasePonTextoXYdelay(short c, short r, char *Texto)
+{
+  int l = strlen(Texto);
+  char *arra = Texto;
+  ;
+
+  for (int i = 0; i < l; i++)
+  {
+    gotoxy(c + i, r);
+    printf(" \n");
+    delay(20);
+  }
+}
+
+void errasePonTextoXY(short c, short r, char *Texto)
+{
+  int l = strlen(Texto);
+  char *arra = Texto;
+  ;
+
+  for (int i = 0; i < l; i++)
+  {
+    gotoxy(c + i, r);
+    printf(" \n");
+  }
+}
+
 void PonTextoCentradoPantalla(short r, char *Texto)
 {
   PonTextoXY(40 - strlen(Texto) / 2, r, Texto);
