@@ -4,7 +4,7 @@
 int main()
 {
 
-	system("clear");
+	//system("clear");
 	// Este es el cuadro principal
 	Recuadro(1, 1, 82, 22, 2);
 	Recuadro(1, 1, 82, 22, 2);

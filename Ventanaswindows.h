@@ -2,7 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include <time.h>
 
+
+void delay(int delay)
+{
+	Sleep(delay);
+	
+}
 // Funcion para posicionar el cursor en la posicion  x, y de la pantalla
 void gotoxy(short x, short y)
 {
@@ -27,7 +34,7 @@ void PonTextoXYANIMADO(short c, short r, char *Texto)
 	{
 		gotoxy(c + i, r);
 		printf("%c\n", arra[i]);
-		delay(20);
+		delay(1);
 	}
 	gotoxy(c, r);
 	printf("%s", Texto);
@@ -43,7 +50,7 @@ void errasePonTextoXYdelay(short c, short r, char *Texto)
 	{
 		gotoxy(c + i, r);
 		printf(" \n");
-		delay(20);
+		delay(1);
 	}
 }
 
@@ -79,9 +86,9 @@ void PonTextoCentradoPantallaAnimadoVERT(short r, short r2, char *Texto)
 	for (int i = r2; i >= r; i = i - 2)
 	{
 		PonTextoXY(40 - strlen(Texto) / 2, i, Texto);
-		delay(100);
+		delay(1);
 		errasePonTextoXY(40 - strlen(Texto) / 2, i, Texto);
-		delay(100);
+		delay(1);
 	}
 
 	PonTextoXY(40 - strlen(Texto) / 2, r, Texto);
@@ -109,29 +116,29 @@ void LineaHorizontal(short c1, short c2, short r, short tipo)
 {
 	short c;
 	gotoxy(c1, r);
-	printf("\u2551");
+	printf("%c", 204);
 	gotoxy(c2, r);
-	printf("\u2551");
+	printf("%c", 185);
 
 	for (c = c1 + 1; c < c2; c++)
 	{
 		gotoxy(c, r);
 		ColorRandom();
-		printf("\u2550\n");
-		delay(10);
+		printf("%c", 205);
+		delay(1);
 	}
 	ColorTexto(33);
 	gotoxy(c1, r);
-	printf("\u2551");
+	printf("%c", 204);
 	gotoxy(c2, r);
-	printf("\u2551");
+	printf("%c", 185);
 
 	for (c = c1 + 1; c < c2; c++)
 	{
 		gotoxy(c, r);
 
-		printf("\u2550\n");
-		delay(10);
+	    printf("%c", 205);
+		delay(1);
 	}
 }
 
@@ -139,7 +146,7 @@ void LineaVertical(short r1, short r2, short c, short tipo)
 {
 	short r;
 	gotoxy(c, r1);
-	printf("\u2550");
+	printf("%c", 203);
 	gotoxy(c, r2);
 	printf("%c", 202);
 
@@ -152,38 +159,31 @@ void Recuadro(short c1, short r1, short c2, short r2, short Tipo)
 {
 	short c, r, ctwo = c2, rtwo = r2;
 
-	gotoxy(c1, r1);
-	printf("\u2554");
-
-	gotoxy(c2, r1);
-	printf("\u2557");
-
-	gotoxy(c1, r2);
-	printf("\u255A");
-
-	gotoxy(c2, r2);
-	printf("\u255D");
+ gotoxy(c1, r1); printf("%c", 201);
+    gotoxy(c2, r1); printf("%c", 187);
+    gotoxy(c1, r2); printf("%c", 200);
+    gotoxy(c2, r2); printf("%c", 188);
 
 	for (c = c1 + 1; c < c2; c++)
 	{
 		gotoxy(c, r1);
 		ColorRandom();
-		printf("\u2550\n");
+		printf("%c", 205);
 		gotoxy(ctwo-- - 1, r2);
 		ColorRandom();
-		printf("\u2550\n");
-		delay(10);
+		printf("%c", 205);
+		delay(1);
 	}
 
 	for (r = r1 + 1; r < r2; r++)
 	{
 		gotoxy(c1, r);
 		ColorRandom();
-		printf("\u2551\n");
+		printf("%c", 186);
 		gotoxy(c2, rtwo-- - 1);
 		ColorRandom();
-		printf("\u2551\n");
-		delay(10);
+		printf("%c", 186);
+		delay(1);
 	}
 }
 
@@ -193,29 +193,4 @@ void RecuadroTextoCentrado(short c1, short r1, short c2, short r2, short Tipo, c
 	PonTextoXY((c1 + c2) / 2 - strlen(Texto) / 2, r1, Texto);
 }
 
-short MenuMetodosNumericos(char *Menu[], short NumeroDeOpciones, char *Texto)
-{
-	short Opcion, x;
 
-	system("cls");
-
-	Recuadro(1, 1, 80, 24, 1);
-	LineaHorizontal(1, 80, 3, 1);
-	PonTextoCentradoPantalla(2, "Sistema para soluciones numericas");
-	PonTextoCentradoPantalla(6, Texto);
-	LineaHorizontal(1, 80, 21, 1);
-	PonTextoCentradoPantalla(21, " Mensajes ");
-
-	for (x = 0; x < NumeroDeOpciones; x++)
-		PonTextoCentradoPantalla(8 + x, Menu[x]);
-
-	do
-	{
-		gotoxy(64, 8 + x - 1);
-		scanf("%hi", &Opcion);
-
-		if (Opcion < 1 || Opcion > NumeroDeOpciones - 1)
-			PonTextoCentradoPantalla(22, "La opcion esta fuera de rango");
-	} while (Opcion < 1 || Opcion > NumeroDeOpciones - 1);
-	return Opcion;
-}
