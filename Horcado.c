@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include "ventanas.h"
 
 int main()
