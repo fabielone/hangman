@@ -1,7 +1,6 @@
 #include <stdio.h>
-#include "Ventanas.h"
+#include "ventanas.h"
 
-//ventanas, menus, pare el juego
+// ventanas, menus, pare el juego
 
-//interface 1 
-
+// interface 1

@@ -1,6 +1,7 @@
 *.exe
 *.o
 Ventanas.h
+ventanas.h
 Ventanas2.h
 Ventanas.h
 tempCodeRunnerFile
