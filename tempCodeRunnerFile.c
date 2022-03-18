@@ -13,18 +13,22 @@ int menu();
 void mensajes(char *mensaje, short clr);
 char *palabra(short cate);
 char *winorlose(int score, int score2);
+void abcdario();
+void underscore();
 
 int engine(char *palabra, int highscore);
 
 int main()
 {
-
-	// intro();
-	//  menu();
-	// highscore(30, "fernando");
-	// scanf("%d");
-	// return 0;
 	system("clear");
+	intro();
+   //menu();
+	highscore(30, "fernando");
+	//tablero(30, 30);
+
+    scanf("%d");
+	return 0;
+
 	char *pal = palabra(menu());
 
 	highscore(40, "fernando");
@@ -262,8 +266,8 @@ void highscore(int score, char *name)
 {
 	char str[4];
 	sprintf(str, "%d", score);
-	clearportion(3, 50, 3, 80);
-	gotoxy(50, 3);
+	//clearportion(4, 50, 4, 80);
+	//gotoxy(50, 4);
 	PonTextoXYANIMADO(50, 4, "High Score ");
 	PonTextoXYANIMADO(62, 4, str);
 	PonTextoXYANIMADO10(67, 4, name);

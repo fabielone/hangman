@@ -22,11 +22,11 @@ int main()
 {
 	system("clear");
 	intro();
-	//  menu();
+   //menu();
 	highscore(30, "fernando");
-	tablero(30, 30);
+	//tablero(30, 30);
 
-	// scanf("%d");
+    scanf("%d");
 	return 0;
 
 	char *pal = palabra(menu());
@@ -266,8 +266,8 @@ void highscore(int score, char *name)
 {
 	char str[4];
 	sprintf(str, "%d", score);
-	clearportion(3, 50, 3, 80);
-	gotoxy(50, 3);
+	//clearportion(4, 50, 4, 80);
+	//gotoxy(50, 4);
 	PonTextoXYANIMADO(50, 4, "High Score ");
 	PonTextoXYANIMADO(62, 4, str);
 	PonTextoXYANIMADO10(67, 4, name);
