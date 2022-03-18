@@ -28,7 +28,7 @@ int main()
 
 	// scanf("%d");
 	return 0;
-	system("clear");
+
 	char *pal = palabra(menu());
 
 	highscore(40, "fernando");
