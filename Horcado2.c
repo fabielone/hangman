@@ -12,29 +12,38 @@ void highscore(int score, char *name);
 int menu();
 void mensajes(char *mensaje, short clr);
 char *palabra(short cate);
+char *winorlose(int score, int score2);
+void abcdario();
+void underscore();
 
 int engine(char *palabra, int highscore);
 
 int main()
 {
-
-	// intro();
+	system("clear");
+	intro();
 	//  menu();
-	highscore(30, "");
-	scanf("%d");
+	highscore(30, "fernando");
+	tablero(30, 30);
+
+	// scanf("%d");
 	return 0;
+	system("clear");
 	char *pal = palabra(menu());
 
-	highscore(0, "");
+	highscore(40, "fernando");
 	int score = engine(pal, 0);
+	char *champ = winorlose(score, 0);
 	int seguir = endgame(score);
 
 	while (seguir == 1)
 
 	{
 		char *pal2 = palabra(2);
-
-		score = engine(pal2, score);
+		highscore(score, champ);
+		int score2 = engine(pal2, score);
+		champ = winorlose(score2, score);
+		score = score2;
 		seguir = endgame(score);
 	}
 
@@ -74,7 +83,6 @@ char *renglonesvacios(char *Texto)
 int engine(char *palabra, int highscore)
 
 {
-	system("clear");
 
 	char *string1 = renglonesvacios(palabra);
 	// printf("%s\n", string1);
@@ -165,14 +173,6 @@ int engine(char *palabra, int highscore)
 int endgame(int *score)
 
 {
-	if (score == 0)
-	{
-		printf("perdistes");
-	}
-	else
-	{
-		printf("ganastes obtubistes el highscore");
-	}
 
 	char *pregunta, *respuestas[] = {"yes", "y", "Y", "no", "n", "N"};
 	printf("Quieres volver a jugar y/n?\n");
@@ -266,14 +266,29 @@ void highscore(int score, char *name)
 {
 	char str[4];
 	sprintf(str, "%d", score);
-
+	clearportion(3, 50, 3, 80);
 	gotoxy(50, 3);
 	PonTextoXYANIMADO(50, 4, "High Score ");
 	PonTextoXYANIMADO(62, 4, str);
-	PonTextoXYANIMADO10(66, 4, name);
+	PonTextoXYANIMADO10(67, 4, name);
 };
 char *palabra(short cate)
 {
 
 	return "woo";
 };
+
+char *winorlose(int score, int score2)
+{
+
+	if (score == 0)
+	{
+		printf("perdistes");
+	}
+	else
+	{
+		printf("ganastes obtubistes el highscore");
+	}
+
+	return "win";
+}
