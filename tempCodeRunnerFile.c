@@ -22,12 +22,9 @@ int main()
 {
 	system("clear");
 	intro();
-   //menu();
-	highscore(30, "fernando");
-	//tablero(30, 30);
+    
 
-    scanf("%d");
-	return 0;
+	//tablero(30, 30);
 
 	char *pal = palabra(menu());
 
@@ -85,13 +82,16 @@ int engine(char *palabra, int highscore)
 {
 
 	char *string1 = renglonesvacios(palabra);
-	// printf("%s\n", string1);
+
+	PonTextoXYANIMADO(60,12,string1);
+	//printf("%s\n", string1);
 	//  printf("%s\n", palabra);
 	char *s = palabra;
 	char *alfabeto = "abcdefghijklmnopqrstuvwxyz";
 	char *malas = renglonesvacios(alfabeto);
-	gotoxy(1, 5);
-	printf("%s", alfabeto);
+	PonTextoCentradoPantallaDELAY(19,alfabeto);
+	//PonTextoCentradoPantallaAnimadoVERT(27, 19, alfabeto);
+	//printf("%s", alfabeto);
 	char c;
 
 	int count = 0, correct = 0, wrong = 0;
@@ -99,7 +99,8 @@ int engine(char *palabra, int highscore)
 	while (strcmp(string1, s) != 0 && wrong < 6)
 	{
 		gotoxy(1, 7);
-		printf("Ingresa una letra en minuscula: ");
+		PonTextoXYANIMADO(45,15,"Ingresa una letra en minuscula: ");
+		//printf("Ingresa una letra en minuscula: ");
 
 		scanf(" %c%*c", &c);
 
@@ -107,7 +108,8 @@ int engine(char *palabra, int highscore)
 		{
 			gotoxy(1, 7);
 			printf("%c\n", c);
-			printf("Letra no valida vuelva intentar: ");
+			mensajes("Letra no valida vuelva intentar: ", 31);
+			
 
 			scanf(" %c%*c", &c);
 			printf("%c", c);
@@ -129,11 +131,11 @@ int engine(char *palabra, int highscore)
 						e = strchr(alfabeto, c);
 						index = (int)(e - alfabeto);
 						string1[i] = c;
-						gotoxy(1, 2);
-						printf("%s\n", string1);
-						gotoxy(1, 3);
-						printf("%s\n", s);
-						gotoxy(index + 1, 5);
+						//gotoxy(1, 2);
+						PonTextoXYANIMADO(60,12,string1);
+						
+						
+						gotoxy(index + 27, 19);
 						ColorTexto(32);
 						printf("%c", c);
 						ColorTexto(0);
@@ -152,9 +154,9 @@ int engine(char *palabra, int highscore)
 				index = (int)(e - alfabeto);
 				malas[index] = c;
 				wrong++;
-				gotoxy(1, 4);
+				gotoxy(60, 6);
 				printf("wrongs:%d\n", wrong);
-				gotoxy(index + 1, 5);
+				gotoxy(index + 27, 19);
 				ColorTexto(31);
 				printf("%c", c);
 				ColorTexto(0);
@@ -163,7 +165,8 @@ int engine(char *palabra, int highscore)
 		else
 		{
 			gotoxy(6, 1);
-			printf("Ya ingresastes esa letra\n");
+			mensajes("Ya ingresastes esa letra \n", 31);
+			
 		}
 	}
 
@@ -275,7 +278,37 @@ void highscore(int score, char *name)
 char *palabra(short cate)
 {
 
-	return "woo";
+
+	char *palabra;
+	int numPalabra;
+	srand(time(NULL));
+	numPalabra=rand()%20;
+	
+	switch(cate)
+	{
+		case 1:
+			{
+				char *Frutas[20] = {"naranja", "toronja", "aguacate", "cereza", "ciruela", "manzana", "platano", "sanddia", "nectarina","melocoton", "mango", "durazno", "granada", "mandarina", "zarzamora", "pera", "pina", "papaya", "maracuya", "mandarina"};
+				palabra=Frutas[numPalabra];
+				break;
+			}
+		case 2:
+			{
+				char *Paises[20]={"mexico", "argentina", "estados unidos", "venezuela", "rusia", "ucrania", "guatemala", "trinidad y tobago", "el salvador", "paraguay", "colombia", "canada", "costa Rica", "peru", "brazil", "japon", "corea del sur", "corea del norte", "madagascar","nicaragua"};
+				palabra=Paises[numPalabra];
+				break;
+			}
+		case 3:
+			{
+				char* Deportes[20]={"natacion", "parapente", "montanismo", "atletismo", "futbol", "tenis", "ajedrez", "motociclismo", "salto largo", " gimnasia ritmica", "boxeo", "basquetbol", "tiro al arco", "skate", "snowboard", " ciclismo de ruta", " escalada", "golf", "balonmano", "esgrima"};
+			    palabra=Deportes[numPalabra];
+			}
+	}
+	return palabra;
+
+
+
+	
 };
 
 char *winorlose(int score, int score2)
